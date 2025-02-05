@@ -42,7 +42,6 @@ Check out the [deployment documentation](https://nuxt.com/docs/getting-started/d
 
 Welcome to the **Reminder App**! This application allows users to:
 
-- **Create an account** with username/password (hashed via `sha256` in MongoDB).  
 - **Log in** to see their personal reminders.  
 - View a **weather forecast** (today & tomorrow) at the top of the dashboard.  
 - See a list of **reminders**, sorted by due date.  
@@ -81,26 +80,15 @@ Welcome to the **Reminder App**! This application allows users to:
    cd nextjs-reminder-app
    ````
 
-2. **(Optional) Create .env File**:
-
-    If you have secrets like WEATHER_API_KEY, create a file named .env in the root directory:
-
-    ```bash
-    WEATHER_API_KEY=YOUR_API_KEY_HERE
-    MONGO_URI=mongodb://mongo:27017/reminderdb
-    ````
-    Make sure your docker-compose.yml or application code references these environment variables.
-
-3. **Build and Run the Application**:
+2. **Build and Run the Application**:
 
     ```bash
     docker-compose up --build
     ```
 
    - This command will:
-     1. Pull the mongo:7 image for the database.
-     2. Build the Docker image for the Next.js (or Nuxt/Nest) app from your local files.
-     3. Start both containers on a shared Docker network.
+     1. Build the Docker image for the Next.js (or Nuxt/Nest) app from your local files.
+     2. Start containers on a shared Docker network.
 
 4. **Access the App**:
     - Open your browser and navigate to http://localhost:3000.
@@ -118,18 +106,6 @@ Welcome to the **Reminder App**! This application allows users to:
      docker-compose down
      ```
 
-### Notes on Configuration
-   - MongoDB:
-       - By default, it stores data in a Docker volume named mongo-data.
-       - On subsequent runs, data will persist unless you remove that volume explicitly:
-          ```bash
-          docker-compose down -v
-          ````
-
-### Weather API:
-  - Replace `YOUR_API_KEY_HERE` with a valid API key from a weather service (e.g., OpenWeatherMap).
-  - In code, the environment variable `process.env.WEATHER_API_KEY` (Node/Next.js), `import.meta.env.WEATHER_API_KEY` (Nuxt/Vue), or `process.env.WEATHER_API_KEY` (Nest.js) should be used to make the API request.
-
 ### Project Architecture
 ```vbnet
 [ MongoDB v7 Container ]
@@ -140,12 +116,6 @@ Welcome to the **Reminder App**! This application allows users to:
     (Application logic, hashing of passwords,
        calls to weather API, front-end UI)
 ```
-
-1. **MongoDB** handles data persistence (users, reminders, etc.).
-2. **Application Container** (Next/Nuxt/Nest+Angular):
-    - Responsible for server-side logic (authentication, CRUD) and front-end rendering.
-    - Communicates with MongoDB through mongodb://mongo:27017/reminderdb.
-    - Displays data, handles user interactions, and calls the weather API.
 
 ### Contributing
 1. Fork the repository and clone it locally.

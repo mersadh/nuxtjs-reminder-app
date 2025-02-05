@@ -1,0 +1,2 @@
+With Nuxt you "can" setup a full blown API server using the embedded 'h3' server and/or 'cross-ws' websockets.  h3 is very efficient and fast, but for the purposes of our experiment, we'll use nestjs in it's own project
+this way all the front-end frameworks will utilize the same back-end endpoints.
