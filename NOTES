@@ -1,0 +1,16 @@
+## MongoDB and MongoDB Express
+
+To develop while running these services from the `compose.yml` file, you can run the commands in your terminal:
+
+```bash
+# Start MongoDB and MongoDB Express
+docker-compose up -d mongo mongo-express
+```
+
+This will create and start the necessary containers for MongoDB and MongoDB Express, but will not build and start the application container.
+
+```bash
+# To stop the containers
+docker-compose down
+```
+

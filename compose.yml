@@ -8,8 +8,8 @@ services:
       - reminder-net
     volumes:
       - mongo-data:/data/db
-    # No authentication for local dev; 
-    # if you want security in production, set up user/password.
+    ports:
+    - "27017:27017"  # Expose MongoDB for external access
 
   app:
     build: .
@@ -25,6 +25,18 @@ services:
       - mongo
     ports:
       - "3000:3000"  # Next.js typically defaults to port 3000
+
+  mongo-express:
+    image: mongo-express:latest
+    container_name: mongo_express
+    environment:
+      - ME_CONFIG_MONGODB_SERVER=mongo
+      - ME_CONFIG_MONGODB_PORT=27017
+      # Optional: Configure additional settings like authentication if needed
+    networks:
+      - reminder-net
+    ports:
+      - "8081:8081"  # Access mongo-express at http://localhost:8081
 
 networks:
   reminder-net:
