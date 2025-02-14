@@ -3,6 +3,9 @@
   definePageMeta({
     layout: "default",
   });
+  definePageMeta({
+    middleware: "auth",
+  })
 </script>
 
 <template>
