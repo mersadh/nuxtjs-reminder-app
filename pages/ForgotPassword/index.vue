@@ -1,8 +1,15 @@
 <script>
 
+import {defineComponent} from "vue";
+import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
+
 const formSubmit = () => {
 
 }
+
+export default defineComponent({
+  components: {FontAwesomeIcon}
+})
 </script>
 
 <template>
@@ -13,7 +20,9 @@ const formSubmit = () => {
     </div>
     <div class="loginBox boxShadow">
       <div class="w-100">
-        <RouterLink class="link" to="/"><i class="fa-solid fa-arrow-left"></i> Back to Login</RouterLink>
+        <RouterLink class="link" to="/">
+          <font-awesome-icon icon="fa-solid fa-arrow-left"/>
+          Back to Login</RouterLink>
       </div>
       <div class="width75">
         <div class="text-center">
