@@ -2,15 +2,27 @@
 import {ref, reactive} from 'vue'
 import Headers from "../../components/Headers"
 import Dashboard from "~/components/DashboardPage.vue";
-  definePageMeta({
-    layout: "default",
-  });
+import { useAuthStore } from '~/store/auth'
+
+const components = {
+  Headers
+}
+
   definePageMeta({
     middleware: "auth",
   })
+const authStore = useAuthStore()
+const router = useRouter()
+
+function logout() {
+  authStore.logout()
+  router.push('/')
+}
+  
 </script>
 
 <template>
+  <Headers/>
   <div>
     <nuxt-route-announcer />
     <Dashboard />

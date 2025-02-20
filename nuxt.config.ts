@@ -11,5 +11,23 @@ export default defineNuxtConfig({
     plugins: [
         {src: '~/plugins/bootstrap.client.ts', mode: 'client'},
         {src: '~/plugins/fontawesome.ts', mode: 'client'}],
-    modules: ['@vesp/nuxt-fontawesome'],
+    modules: ['@vesp/nuxt-fontawesome',
+              '@pinia/nuxt',
+    ],
+
+    nitro: {
+        devProxy: {
+          '/api': {
+            target: 'http://localhost:3080',
+            changeOrigin: true,
+          }
+        }
+      },
+    runtimeConfig: {
+        public: {
+          apiBase: process.env.API_BASE_URL || 'http://localhost:3080'
+        }
+      },
+    
+      pages: true, 
 })
